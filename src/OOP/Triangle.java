@@ -1,4 +1,8 @@
-public class Triangle {
+package OOP;
+
+import java.util.Objects;
+
+public class Triangle extends GeometricFigure {
     private int a;
     private int b;
     private int c;
@@ -43,21 +47,31 @@ public class Triangle {
         this.c = c;
     }
 
-    public void printSide() {
-        System.out.printf("Side A = %d\nSide B = %d\nSide C = %d\n", a, b, c);
+    @Override
+    public void square() {
+        System.out.println("Square");
+    }
+
+    @Override
+    public void perimeter() {
+        int per = getA() + getB() + getC();
+        System.out.printf("Perimeter = %d%n", per);
+    }
+
+    @Override
+    public void printFigure() {
+        System.out.printf("Side A = %d\nSide B = %d\nSide C = %d\n", getA(), getB(), getC());
     }
 
     //determining the existence of a triangle
     private void determiningTriangle() {
-        if (a + b < c || a + c < b || b + c < a)
-            realTriangle = false;
-        else
-            realTriangle = true;
+        realTriangle = getA() + getB() >= getC() && getA() + getC() >= getB() && getB() + getC() >= getA();
     }
 
     public boolean isRealTriangle() {
         determiningTriangle();
         return realTriangle;
     }
+
 
 }
