@@ -49,7 +49,10 @@ public class Triangle extends GeometricFigure {
 
     @Override
     public void square() {
-        System.out.println("Square");
+        double semiPerimeter = (getA()+getB()+getC())/2;
+        double squareTriangle =
+                Math.sqrt(semiPerimeter*(semiPerimeter-getA())*(semiPerimeter-getB())*(semiPerimeter-getC()));
+        System.out.println("Square :" + squareTriangle);
     }
 
     @Override

@@ -36,16 +36,16 @@ public class Rectangle extends GeometricFigure {
     }
 
 
-
-
     @Override
     public void square() {
-
+        double squareRectangle = getA() * getB();
+        System.out.println("Square :" + squareRectangle);
     }
 
     @Override
     public void perimeter() {
-
+        double perimeterRectangle = 2 * getA() * getB();
+        System.out.println("Perimeter = %d%n" + perimeterRectangle);
     }
 
     @Override
