@@ -1,31 +1,46 @@
+import OOP.NewTriangle;
 import OOP.Rectangle;
 import OOP.Triangle;
 
 public class Main {
-    public static void main(String[] args) throws Exception {
-        Triangle triangle = new Triangle();
-        Triangle triangle2 = new Triangle(2, 4, 8);
+    //throws Exception
+    public static void main(String[] args) {
 
         //print side triangle
         System.out.println("Triangle");
+        Triangle triangle = new Triangle();
+        Triangle triangle2 = new Triangle(2, 4, 6);
         System.out.println("Use method \"printFigure\":");
-        triangle2.printFigure();
+        triangle.printFigure();
+        System.out.println("Use method \"toScale\":");
+        triangle.toScale(2);
+        System.out.println("Use method \"printFigure\":");
+        triangle.printFigure();
+        System.out.println("Use method perimeter:");
+        triangle.perimeter();
+        System.out.println("Use method square:");
+        triangle.square();
         System.out.println();
+        System.out.println("Use set");
         triangle2.setA(4);
         triangle2.setB(4);
         triangle2.setC(4);
         System.out.println("Use gets:");
         System.out.printf("Side A = %d\nSide B = %d\nSide C = %d\n",
-                triangle2.getA(), triangle.getB(), triangle2.getC());
+                triangle2.getA(), triangle2.getB(), triangle2.getC());
         System.out.println("OOP.Triangle is real " + triangle2.isRealTriangle());
         triangle2.setA(4);
         triangle2.setB(4);
         triangle2.setC(10);
+        triangle2.printFigure();
         System.out.println("OOP.Triangle is real " + triangle2.isRealTriangle());
-        System.out.println("Use method perimeter:");
-        triangle2.perimeter();
-        System.out.println("Use method square:");
-        triangle2.square();
+        System.out.println();
+        System.out.println();
+
+        System.out.println("NewTriangle");
+        NewTriangle newTriangle = new NewTriangle();
+        System.out.println("Use method \"printFigure\":");
+        newTriangle.printFigure();
         System.out.println();
 
         System.out.println("Rectangle");

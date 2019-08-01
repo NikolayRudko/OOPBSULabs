@@ -7,11 +7,13 @@ public class Rectangle extends GeometricFigure {
     public Rectangle() {
         this.a = 10;
         this.b = 10;
+        System.out.println("Rectangle was initialized");
     }
 
     public Rectangle(int a, int b) {
         this.a = a;
         this.b = b;
+        System.out.println("Rectangle was initialized");
     }
 
     public Rectangle(int a) {
@@ -38,21 +40,18 @@ public class Rectangle extends GeometricFigure {
 
     @Override
     public void square() {
-        double squareRectangle = getA() * getB();
+        double squareRectangle = a * b;
         System.out.println("Square :" + squareRectangle);
     }
 
     @Override
     public void perimeter() {
-        double perimeterRectangle = 2 * getA() * getB();
+        double perimeterRectangle = 2 * a * b;
         System.out.println("Perimeter = %d%n" + perimeterRectangle);
     }
 
     @Override
     public void printFigure() {
-        System.out.printf("Side A = %d\nSide B = %d\n",
-                getA(), getB());
+        System.out.printf("Side A = %d\nSide B = %d\n", a, b);
     }
-
-
 }

@@ -9,18 +9,21 @@ public class Triangle extends GeometricFigure {
     private boolean realTriangle;
 
     //Creating an instance of a class
-    public Triangle(int a, int b, int c) throws Exception {
-        if (a <= 0 || b <= 0 || c <= 0)
-            throw new Exception("Invalid side");
+    //throws Exception
+    public Triangle(int a, int b, int c) {
+/*        if (a <= 0 || b <= 0 || c <= 0)
+            throw new Exception("Invalid side");*/
         this.a = a;
         this.b = b;
         this.c = c;
+        System.out.println("Triangle was initialized");
     }
 
     public Triangle() {
         this.a = 10;
         this.b = 10;
         this.c = 10;
+        System.out.println("Triangle was initialized");
     }
 
     public int getA() {
@@ -47,34 +50,37 @@ public class Triangle extends GeometricFigure {
         this.c = c;
     }
 
+    public void toScale(int scale) {
+        a *= scale;
+        b *= scale;
+        c *= scale;
+    }
+
     @Override
     public void square() {
-        double semiPerimeter = (getA()+getB()+getC())/2;
-        double squareTriangle =
-                Math.sqrt(semiPerimeter*(semiPerimeter-getA())*(semiPerimeter-getB())*(semiPerimeter-getC()));
+        double semiPerimeter = (a + b + c) / 2;
+        double squareTriangle = Math.sqrt(semiPerimeter * (semiPerimeter - a) * (semiPerimeter - b) * (semiPerimeter - c));
         System.out.println("Square :" + squareTriangle);
     }
 
     @Override
     public void perimeter() {
-        int per = getA() + getB() + getC();
-        System.out.printf("Perimeter = %d%n", per);
+        int perimeterTriangle = a + b + c;
+        System.out.printf("Perimeter = %d%n", perimeterTriangle);
     }
 
     @Override
     public void printFigure() {
-        System.out.printf("Side A = %d\nSide B = %d\nSide C = %d\n", getA(), getB(), getC());
+        System.out.printf("Side A = %d\nSide B = %d\nSide C = %d\n", a, b, c);
     }
 
     //determining the existence of a triangle
     private void determiningTriangle() {
-        realTriangle = getA() + getB() >= getC() && getA() + getC() >= getB() && getB() + getC() >= getA();
+        realTriangle = a + b >= c && a + c >= b && b + c >= a;
     }
 
     public boolean isRealTriangle() {
         determiningTriangle();
         return realTriangle;
     }
-
-
 }
