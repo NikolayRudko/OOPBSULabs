@@ -57,14 +57,14 @@ public class Triangle extends GeometricFigure {
     }
 
     @Override
-    public void square() {
+    public void printSquareFigure() {
         double semiPerimeter = (a + b + c) / 2;
         double squareTriangle = Math.sqrt(semiPerimeter * (semiPerimeter - a) * (semiPerimeter - b) * (semiPerimeter - c));
         System.out.println("Square :" + squareTriangle);
     }
 
     @Override
-    public void perimeter() {
+    public void printPerimeterFigure() {
         int perimeterTriangle = a + b + c;
         System.out.printf("Perimeter = %d%n", perimeterTriangle);
     }

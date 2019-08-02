@@ -2,9 +2,9 @@ package OOP;
 
 public abstract class GeometricFigure {
 
-    public abstract void square();
+    public abstract void printSquareFigure();
 
-    public abstract void perimeter();
+    public abstract void printPerimeterFigure();
 
     public void printFigure(){
         System.out.println("Figure");

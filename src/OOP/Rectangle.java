@@ -3,10 +3,11 @@ package OOP;
 public class Rectangle extends GeometricFigure {
     private int a;
     private int b;
+   // private int
 
     public Rectangle() {
-        this.a = 10;
-        this.b = 10;
+        a = 10;
+        b = 10;
         System.out.println("Rectangle was initialized");
     }
 
@@ -18,7 +19,7 @@ public class Rectangle extends GeometricFigure {
 
     public Rectangle(int a) {
         this.a = a;
-        this.b = a;
+        b = a;
     }
 
     public int getA() {
@@ -39,14 +40,14 @@ public class Rectangle extends GeometricFigure {
 
 
     @Override
-    public void square() {
+    public void printSquareFigure() {
         double squareRectangle = a * b;
         System.out.println("Square :" + squareRectangle);
     }
 
     @Override
-    public void perimeter() {
-        double perimeterRectangle = 2 * a * b;
+    public void printPerimeterFigure() {
+        double perimeterRectangle = 2 * (a + b);
         System.out.println("Perimeter = %d%n" + perimeterRectangle);
     }
 
