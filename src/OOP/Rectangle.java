@@ -3,23 +3,29 @@ package OOP;
 public class Rectangle extends GeometricFigure {
     private int a;
     private int b;
-   // private int
 
     public Rectangle() {
         a = 10;
         b = 10;
+        setArea(areaRectangle(this.a, this.b));
+        setPerimeter(perimeterRectangle(this.a, this.b));
         System.out.println("Rectangle was initialized");
     }
 
     public Rectangle(int a, int b) {
         this.a = a;
         this.b = b;
+        setArea(areaRectangle(this.a, this.b));
+        setPerimeter(perimeterRectangle(this.a, this.b));
         System.out.println("Rectangle was initialized");
     }
 
     public Rectangle(int a) {
         this.a = a;
-        b = a;
+        this.b = a;
+        setArea(areaRectangle(this.a));
+        setPerimeter(perimeterRectangle(this.a));
+        System.out.println("Rectangle was initialized");
     }
 
     public int getA() {
@@ -38,21 +44,36 @@ public class Rectangle extends GeometricFigure {
         this.b = b;
     }
 
-
-    @Override
-    public void printSquareFigure() {
-        double squareRectangle = a * b;
-        System.out.println("Square :" + squareRectangle);
+    //calculates the perimeter of a rectangle
+    private int perimeterRectangle(int varA, int varB) {
+        return 2 * (varA + varB);
     }
 
-    @Override
-    public void printPerimeterFigure() {
-        double perimeterRectangle = 2 * (a + b);
-        System.out.println("Perimeter = %d%n" + perimeterRectangle);
+    private int perimeterRectangle(int varA) {
+        return 4 * varA;
+    }
+
+    //calculates the area of a rectangle
+    private double areaRectangle(int varA, int varB) {
+        return varA * varB;
+    }
+
+    private double areaRectangle(int varA) {
+        return varA * varA;
     }
 
     @Override
     public void printFigure() {
-        System.out.printf("Side A = %d\nSide B = %d\n", a, b);
+        System.out.println("It is Rectangle");
+    }
+
+    @Override
+    public String toString() {
+        return "Rectangle{" +
+                "\nside a=" + a +
+                ",side b=" + b +
+                ".\nArea=" + getArea() +
+                ".\nPerimeter=" + getPerimeter() +
+                "\n}";
     }
 }
