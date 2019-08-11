@@ -6,17 +6,13 @@ public class TriangularPrism extends Triangle {
     public TriangularPrism(int a, int b, int c, int d) {
         super(a, b, c);
         this.d = d;
-        setPerimeter(perimeterTriangularPrism(getA(), getB(), getC(), getD()));
-        setArea(areaTriangularPrism(getA(), getB(), getC(), getD()));
-        System.out.println("Triangular prism was initialized");
+        //System.out.println("Triangular prism was initialized");
     }
 
     public TriangularPrism(int a) {
         super(a);
         this.d = a;
-        setPerimeter(perimeterTriangularPrism(getA()));
-        setArea(areaTriangularPrism(getA()));
-        System.out.println("Triangular prism was initialized");
+        //System.out.println("Triangular prism was initialized");
     }
 
     public TriangularPrism() {
@@ -24,11 +20,8 @@ public class TriangularPrism extends Triangle {
         setB(10);
         setC(10);
         setD(10);
-        setPerimeter(perimeterTriangularPrism(getA(), getB(), getC(), getD()));
-        setArea(areaTriangularPrism(getA(), getB(), getC(), getD()));
-        System.out.println("Triangular prism was initialized");
+        //System.out.println("Triangular prism was initialized");
     }
-
 
     public void setD(int d) {
         this.d = d;
@@ -38,27 +31,54 @@ public class TriangularPrism extends Triangle {
         return d;
     }
 
-    //calculates the perimeter of a Triangular prism
-    private int perimeterTriangularPrism(int varA, int varB, int varC, int varD) {
-        return 2 * (varA + varB + varC) + 3 * varD;
+    public boolean isRealTriangularPrism() {
+        return getD() > 0 && isRealTriangle();
     }
 
-    private int perimeterTriangularPrism(int varA) {
-        return 9 * varA;
+    public void printExistTriangularPrism() {
+        if (isRealTriangle())
+            System.out.println("Triangular prism is exist");
+        else
+            System.out.println("Triangular prism is not exist");
+    }
+
+    //calculates the perimeter of a Triangular prism
+    int perimeterTriangularPrism() {
+        return 2 * perimeterTriangle() + 3 * getD();
+    }
+
+    @Override
+    public void printPerimeterFigure() {
+        if (isRealTriangularPrism())
+            System.out.printf("Perimeter: %d%n", perimeterTriangularPrism());
+        else
+            System.out.println("The triangular prism has no perimeter");
+    }
+
+    double ariaTriangularPrism() {
+        double faceArea = (getA() + getB() + getC()) * getD();
+        return faceArea + 2 * areaTriangle();
     }
 
     //calculates the area of a Triangular prism
-    private double areaTriangularPrism(int varA, int varB, int varC, int varD) {
-        double semiPerimeter = (varA + varB + varC) / 2;
-        double baseArea = Math.sqrt(semiPerimeter * (semiPerimeter - varA) * (semiPerimeter - varB) * (semiPerimeter - varC));
-        double faceArea = (varA + varB + varC) * varD;
-        return faceArea + 2 * baseArea;
+
+    @Override
+    public void printAreaFigure() {
+        if (isRealTriangularPrism())
+            System.out.printf("Area: %f%n", ariaTriangularPrism());
+        else
+            System.out.println("The triangular prism has no area");
     }
 
-    private double areaTriangularPrism(int varA) {
-        double baseArea = varA * varA * Math.sqrt(3) / 4;
-        double faceArea = varA * varA * 3;
-        return faceArea + 2 * baseArea;
+    private double volumeTriangularPrism() {
+        return areaTriangle() * getD();
+    }
+
+    public void printVolumeFigure() {
+        if (isRealTriangularPrism())
+            System.out.printf("Volume: %f%n", volumeTriangularPrism());
+        else
+            System.out.println("The triangular prism has no volume");
     }
 
     @Override
@@ -68,15 +88,15 @@ public class TriangularPrism extends Triangle {
 
     @Override
     public String toString() {
-        return "Triangular prism{" +
-                "\nside a=" + getA() +
-                ",side b=" + getB() +
-                ",side c=" + getC() +
-                ",height d=" + getD() +
-                ".\nArea=" + getArea() +
-                ".\nPerimeter=" + getPerimeter() +
-                "\n}";
+        if (isRealTriangularPrism())
+            return "Triangular prism{" +
+                    "\ncolor: " + getColor().printColor() +
+                    "\nside a=" + getA() +
+                    ",\nside b=" + getB() +
+                    ",\nside c=" + getC() +
+                    ",\nheight d=" + getD() +
+                    "}";
+        return "Triangular prism does not exist";
     }
-
 }
 

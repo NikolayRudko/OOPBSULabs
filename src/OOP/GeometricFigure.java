@@ -1,36 +1,27 @@
 package OOP;
 
 public abstract class GeometricFigure {
-    private int perimeter;
-    private double area;
+    private Color color;
 
-    GeometricFigure() {
-        System.out.println("Geometric figure was initialized");
+    public GeometricFigure(Color color) {
+        this.color = color;
     }
 
-    void setPerimeter(int perimeter) {
-        this.perimeter = perimeter;
+    public GeometricFigure() {
+        this.color = Color.WHITE;
     }
 
-    void setArea(double area) {
-        this.area = area;
+    public Color getColor() {
+        return color;
     }
 
-    int getPerimeter() {
-        return perimeter;
+    public void setColor(Color color) {
+        this.color = color;
     }
 
-    double getArea() {
-        return area;
-    }
+    public abstract void printAreaFigure();
 
-    public void printAreaFigure() {
-        System.out.printf("Square :%s%n", getArea());
-    }
-
-    public void printPerimeterFigure() {
-        System.out.printf("Perimeter: %d%n", getPerimeter());
-    }
+    public abstract void printPerimeterFigure();
 
     public abstract void printFigure();
 }

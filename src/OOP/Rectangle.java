@@ -7,25 +7,26 @@ public class Rectangle extends GeometricFigure {
     public Rectangle() {
         a = 10;
         b = 10;
-        setArea(areaRectangle(this.a, this.b));
-        setPerimeter(perimeterRectangle(this.a, this.b));
-        System.out.println("Rectangle was initialized");
+        //System.out.println("Rectangle was initialized");
     }
 
     public Rectangle(int a, int b) {
         this.a = a;
         this.b = b;
-        setArea(areaRectangle(this.a, this.b));
-        setPerimeter(perimeterRectangle(this.a, this.b));
-        System.out.println("Rectangle was initialized");
+        //System.out.println("Rectangle was initialized");
+    }
+
+    public Rectangle(Color color, int a, int b) {
+        super(color);
+        this.a = a;
+        this.b = b;
+        //System.out.println("Rectangle was initialized");
     }
 
     public Rectangle(int a) {
         this.a = a;
         this.b = a;
-        setArea(areaRectangle(this.a));
-        setPerimeter(perimeterRectangle(this.a));
-        System.out.println("Rectangle was initialized");
+        //System.out.println("Rectangle was initialized");
     }
 
     public int getA() {
@@ -44,22 +45,52 @@ public class Rectangle extends GeometricFigure {
         this.b = b;
     }
 
-    //calculates the perimeter of a rectangle
-    private int perimeterRectangle(int varA, int varB) {
-        return 2 * (varA + varB);
+    public boolean isRealRectangle() {
+        return getA() > 0 || getB() > 0;
     }
 
-    private int perimeterRectangle(int varA) {
-        return 4 * varA;
+    public void printExistRectangle() {
+        if (isRealRectangle())
+            System.out.println("Rectangle is exist");
+        else
+            System.out.println("Rectangle is not exist");
     }
 
-    //calculates the area of a rectangle
-    private double areaRectangle(int varA, int varB) {
-        return varA * varB;
+    public void definitionRectangleType() {
+        if (!isRealRectangle())
+            System.out.println("This rectangle does not exist!!!");
+        else {
+            if (getA() == getB())
+                System.out.println("This rectangle is square");
+            else
+                System.out.println("This is a simple rectangle.");
+        }
     }
 
-    private double areaRectangle(int varA) {
-        return varA * varA;
+    int perimeterRectangle() {
+        return 2 * (getA() + getB());
+    }
+
+    @Override
+    public void printPerimeterFigure() {
+        if (isRealRectangle())
+            System.out.printf("Perimeter: %d%n", perimeterRectangle());
+        else
+            System.out.println("The rectangle has no perimeter");
+
+
+    }
+
+    double areaRectangle() {
+        return getA() * getB();
+    }
+
+    @Override
+    public void printAreaFigure() {
+        if (isRealRectangle())
+            System.out.printf("Area: %f%n", areaRectangle());
+        else
+            System.out.println("The rectangle has no perimeter");
     }
 
     @Override
@@ -69,11 +100,12 @@ public class Rectangle extends GeometricFigure {
 
     @Override
     public String toString() {
-        return "Rectangle{" +
-                "\nside a=" + a +
-                ",side b=" + b +
-                ".\nArea=" + getArea() +
-                ".\nPerimeter=" + getPerimeter() +
-                "\n}";
+        if (isRealRectangle())
+            return "Rectangle{" +
+                    "\ncolor: " + getColor().printColor() +
+                    "\nside a=" + getA() +
+                    ",\nside b=" + getB() +
+                    "}";
+        return "Rectangle does not exist";
     }
 }

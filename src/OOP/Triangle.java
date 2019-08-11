@@ -10,27 +10,21 @@ public class Triangle extends GeometricFigure {
         this.a = a;
         this.b = b;
         this.c = c;
-        setArea(areaTriangle(this.a, this.b, this.c));
-        setPerimeter(perimeterTriangle(this.a, this.b, this.c));
-        System.out.println("Triangle was initialized");
+        //System.out.println("Triangle was initialized");
     }
 
     public Triangle(int a) {
         this.a = a;
         this.b = a;
         this.c = a;
-        setArea(areaTriangle(this.a, this.b, this.c));
-        setPerimeter(perimeterTriangle(this.a, this.b, this.c));
-        System.out.println("Triangle was initialized");
+        //System.out.println("Triangle was initialized");
     }
 
     public Triangle() {
         this.a = 10;
         this.b = 10;
         this.c = 10;
-        setArea(areaTriangle(this.a, this.b, this.c));
-        setPerimeter(perimeterTriangle(this.a, this.b, this.c));
-        System.out.println("Triangle was initialized");
+        // System.out.println("Triangle was initialized");
     }
 
     public int getA() {
@@ -65,19 +59,53 @@ public class Triangle extends GeometricFigure {
     }
 
     //determining the existence of a triangle
+    public void printExistTriangle() {
+        if (isRealTriangle())
+            System.out.println("Triangle is exist");
+        else
+            System.out.println("Triangle is not exist");
+    }
+
+    public void definitionTriangleType() {
+        if (!isRealTriangle())
+            System.out.println("This triangle does not exist!!!");
+        else {
+            if (getA() == getB() && getA() == getC())
+                System.out.println("This triangle is equilateral");
+            else if (getA() == getB() || getB() == getC() || getC() == getA())
+                System.out.println("This triangle is isosceles");
+            else
+                System.out.println("This triangle is versatile");
+        }
+    }
+
+    int perimeterTriangle() {
+        return getA() + getB() + getC();
+    }
+
+    @Override
+    public void printPerimeterFigure() {
+        if (isRealTriangle())
+            System.out.printf("Perimeter: %d%n", perimeterTriangle());
+        else
+            System.out.println("The triangle has no perimeter");
+    }
+
+    double areaTriangle() {
+        double semiPerimeter = (getA() + getB() + getC()) / 2;
+        return Math.sqrt(semiPerimeter * (semiPerimeter - getA()) * (semiPerimeter - getB()) * (semiPerimeter - getC()));
+    }
+
+    @Override
+    public void printAreaFigure() {
+        if (isRealTriangle())
+            System.out.printf("Area: %f%n", areaTriangle());
+        else
+            System.out.println("The triangle has no area");
+    }
+
     public boolean isRealTriangle() {
-        return a + b >= c && a + c >= b && b + c >= a;
-    }
-
-    //calculates the perimeter of a triangle
-    private int perimeterTriangle(int varA, int varB, int varC) {
-        return varA + varB + varC;
-    }
-
-    //calculates the area of a triangle
-    private double areaTriangle(int varA, int varB, int varC) {
-        double semiPerimeter = (varA + varB + varC) / 2;
-        return Math.sqrt(semiPerimeter * (semiPerimeter - varA) * (semiPerimeter - varB) * (semiPerimeter - varC));
+        return a + b > c && a + c > b && b + c > a && a > 0 && b > 0 && c > 0;
     }
 
     @Override
@@ -89,12 +117,11 @@ public class Triangle extends GeometricFigure {
     public String toString() {
         if (isRealTriangle())
             return "Triangle{" +
-                    "\nside a=" + a +
-                    ", side b=" + b +
-                    ", side c=" + c +
-                    ".\nArea=" + getArea() +
-                    ".\nPerimeter=" + getPerimeter() +
-                    "\n}";
+                    "\ncolor: " + getColor().printColor() +
+                    "\nside a=" + getA() +
+                    ",\nside b=" + getB() +
+                    ",\nside c=" + getC() +
+                    "}";
         return "Triangle does not exist";
     }
 }
