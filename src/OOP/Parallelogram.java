@@ -1,6 +1,6 @@
 package OOP;
 
-public class Parallelogram extends Rectangle {
+public class Parallelogram extends Rectangle implements VolumeFigure {
     private int c;
 
     public Parallelogram() {
@@ -27,6 +27,11 @@ public class Parallelogram extends Rectangle {
         //System.out.println("Parallelogram was initialized");
     }
 
+    public Parallelogram(Color color, int a, int b, int c) {
+        super(color, a, b);
+        this.c = c;
+    }
+
     public int getC() {
         return c;
     }
@@ -35,12 +40,13 @@ public class Parallelogram extends Rectangle {
         this.c = c;
     }
 
-    public boolean isRealParallelogram() {
-        return getC() > 0 && isRealRectangle();
+    @Override
+    public boolean isRealFigure() {
+        return getC() > 0 && super.isRealFigure();
     }
 
     public void printExistTriangularPrism() {
-        if (isRealParallelogram())
+        if (isRealFigure())
             System.out.println("Parallelogram prism is exist");
         else
             System.out.println("Parallelogram prism is not exist");
@@ -53,7 +59,7 @@ public class Parallelogram extends Rectangle {
 
     @Override
     public void printPerimeterFigure() {
-        if (isRealParallelogram())
+        if (isRealFigure())
             System.out.printf("Perimeter: %d%n", perimeterParallelogram());
         else
             System.out.println("The parallelogram has no perimeter");
@@ -67,7 +73,7 @@ public class Parallelogram extends Rectangle {
 
     @Override
     public void printAreaFigure() {
-        if (isRealParallelogram())
+        if (isRealFigure())
             System.out.printf("Area: %f%n", ariaParallelogram());
         else
             System.out.println("The parallelogram has no area");
@@ -77,8 +83,9 @@ public class Parallelogram extends Rectangle {
         return areaRectangle() * getC();
     }
 
+    @Override
     public void printVolumeFigure() {
-        if (isRealParallelogram())
+        if (isRealFigure())
             System.out.printf("Volume: %f%n", volumeParallelogram());
         else
             System.out.println("The parallelogram has no volume");
@@ -92,7 +99,7 @@ public class Parallelogram extends Rectangle {
 
     @Override
     public String toString() {
-        if (isRealParallelogram())
+        if (isRealFigure())
             return "Parallelogram{" +
                     "\ncolor: " + getColor().printColor() +
                     "\nside a=" + getA() +

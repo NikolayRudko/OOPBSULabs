@@ -4,7 +4,7 @@ public class Rectangle extends GeometricFigure {
     private int a;
     private int b;
 
-    public Rectangle() {
+        public Rectangle() {
         a = 10;
         b = 10;
         //System.out.println("Rectangle was initialized");
@@ -45,20 +45,22 @@ public class Rectangle extends GeometricFigure {
         this.b = b;
     }
 
-    public boolean isRealRectangle() {
-        return getA() > 0 || getB() > 0;
+    @Override
+    public boolean isRealFigure() {
+        return getA() > 0 && getB() > 0;
     }
 
     public void printExistRectangle() {
-        if (isRealRectangle())
+        if (isRealFigure())
             System.out.println("Rectangle is exist");
         else
             System.out.println("Rectangle is not exist");
     }
 
-    public void definitionRectangleType() {
-        if (!isRealRectangle())
-            System.out.println("This rectangle does not exist!!!");
+    @Override
+    public void definitionFigureType() {
+        if (!isRealFigure())
+            System.out.println("This rectangle does not exist!");
         else {
             if (getA() == getB())
                 System.out.println("This rectangle is square");
@@ -73,12 +75,10 @@ public class Rectangle extends GeometricFigure {
 
     @Override
     public void printPerimeterFigure() {
-        if (isRealRectangle())
+        if (isRealFigure())
             System.out.printf("Perimeter: %d%n", perimeterRectangle());
         else
             System.out.println("The rectangle has no perimeter");
-
-
     }
 
     double areaRectangle() {
@@ -87,7 +87,7 @@ public class Rectangle extends GeometricFigure {
 
     @Override
     public void printAreaFigure() {
-        if (isRealRectangle())
+        if (isRealFigure())
             System.out.printf("Area: %f%n", areaRectangle());
         else
             System.out.println("The rectangle has no perimeter");
@@ -100,7 +100,7 @@ public class Rectangle extends GeometricFigure {
 
     @Override
     public String toString() {
-        if (isRealRectangle())
+        if (isRealFigure())
             return "Rectangle{" +
                     "\ncolor: " + getColor().printColor() +
                     "\nside a=" + getA() +

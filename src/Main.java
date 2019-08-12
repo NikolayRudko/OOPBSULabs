@@ -5,65 +5,81 @@ public class Main {
         //Triangle
         {
             Triangle triangle = new Triangle();
-            Triangle triangle2 = new Triangle(2, 4, 6);
+            Triangle triangle1 = new Triangle(4);
             //Use gets
             System.out.printf("Use gets:%nSide A = %d%nSide B = %d%nSide C = %d%n",
-                    triangle2.getA(), triangle2.getB(), triangle2.getC());
-            System.out.println();
+                    triangle1.getA(), triangle1.getB(), triangle1.getC());
+            //Use sets
+            triangle1.setA(4);
+            triangle1.setB(4);
+            triangle1.setC(10);
+            //isRealFigure
+            System.out.println("Triangle is real " + triangle1.isRealFigure());
+            triangle1.printExistTriangle();
+            triangle1 = triangle;
+            System.out.println("Triangle is real " + triangle1.isRealFigure());
+            triangle1.printExistTriangle();
+            useFigure(triangle1);
+            //use scale
+            triangle1.toScale(2);
+            useFigure(triangle1);
 
-            useFigure(triangle);
+            Triangle triangle2 = new Triangle(Color.BLUE, 12, 12, 6);
             useFigure(triangle2);
-            //Use set
 
-            triangle2.setA(4);
-            triangle2.setB(4);
-            triangle2.setC(4);
-            useFigure(triangle2);
-            System.out.println("Use method \"isRealTriangle\":");
-            System.out.println("Triangle is real " + triangle2.isRealTriangle());
-
-            triangle2.setA(4);
-            triangle2.setB(4);
-            triangle2.setC(10);
-            triangle2.printFigure();
-            useFigure(triangle2);
+            int count = 3;
+            Triangle[] triangles = new Triangle[count];
+            for (int i = 0; i < count; i++) {
+                triangles[i] = new Triangle(i + 1);
+            }
+            for (Triangle figure : triangles) {
+                System.out.println(figure);
+                System.out.println();
+            }
         }
+
         //TriangularPrism
         {
-            TriangularPrism triangularPrism = new TriangularPrism();
-            TriangularPrism triangularPrism1 = new TriangularPrism(12,16,15,10);
-            TriangularPrism triangularPrism2 = new TriangularPrism(12,16,15,0);
-            useFigure(triangularPrism);
-            useFigure(triangularPrism1);
-            useFigure(triangularPrism2);
+            TriangularPrism[] triangularPrisms = new TriangularPrism[4];
+
+            triangularPrisms[0] = new TriangularPrism();
+            triangularPrisms[1] = new TriangularPrism(4);
+            triangularPrisms[2] = new TriangularPrism(Color.YELLOW, 12, 16, 10, 15);
+            triangularPrisms[3] = new TriangularPrism(12, 61, 15, 0);
+
+            for (TriangularPrism item : triangularPrisms) {
+                useFigure(item);
+            }
         }
 
         //Rectangle
         {
-            //System.out.println("Rectangle");
-            Rectangle rectangle = new Rectangle();
-            Rectangle rectangle1 = new Rectangle(20, 30);
-            Rectangle rectangle2 = new Rectangle(0);
-            useFigure(rectangle);
-            useFigure(rectangle1);
-            useFigure(rectangle2);
+            Rectangle[] rectangles = new Rectangle[5];
+            rectangles[0] = new Rectangle();
+            rectangles[1] = new Rectangle(3);
+            rectangles[2] = new Rectangle(2, 0);
+            rectangles[3] = new Rectangle(Color.RED, 6, 0);
+            rectangles[4] = new Rectangle(Color.RED, 6, 5);
+            for (Rectangle item : rectangles) {
+                useFigure(item);
+            }
         }
-
         //Parallelogram
         {
-            //System.out.println("Parallelogram");
-            Parallelogram parallelogram = new Parallelogram();
-            parallelogram.setC(10);
-            System.out.println("Side C = " + parallelogram.getC());
-            Parallelogram parallelogram1 = new Parallelogram(0);
-            Parallelogram parallelogram2 = new Parallelogram(20, 20);
-            parallelogram2.setC(30);
-            Parallelogram parallelogram3 = new Parallelogram(30, 30, 30);
-            parallelogram3.setC(40);
-            useFigure(parallelogram);
-            useFigure(parallelogram1);
-            useFigure(parallelogram2);
-            useFigure(parallelogram3);
+
+            Parallelogram[] parallelograms = new Parallelogram[6];
+            parallelograms[0] = new Parallelogram();
+            parallelograms[1] = new Parallelogram(5);
+            parallelograms[2] = new Parallelogram(2, 0);
+            parallelograms[3] = new Parallelogram(1, 4, 6);
+            parallelograms[4] = new Parallelogram(Color.PINK, 11, 14, 16);
+            parallelograms[5] = parallelograms[4];
+            parallelograms[5].setColor(Color.GREEN);
+
+            for (Parallelogram item : parallelograms
+            ) {
+                useFigure(item);
+            }
         }
     }
 
@@ -71,26 +87,14 @@ public class Main {
         System.out.println(geometricFigure);
         geometricFigure.printPerimeterFigure();
         geometricFigure.printAreaFigure();
-        if (geometricFigure instanceof Triangle) {
-            if (((Triangle) geometricFigure).isRealTriangle()) {
-                ((Triangle) geometricFigure).definitionTriangleType();
-            }
-
-            if (geometricFigure instanceof TriangularPrism) {
-                if (((TriangularPrism) geometricFigure).isRealTriangularPrism())
-                    ((TriangularPrism) geometricFigure).printVolumeFigure();
-            }
+        if (geometricFigure instanceof Triangle || geometricFigure instanceof Rectangle) {
+            //Определяем тип фигуры
+            geometricFigure.definitionFigureType();
         }
 
-        if (geometricFigure instanceof Rectangle) {
-            if (((Rectangle) geometricFigure).isRealRectangle()) {
-                ((Rectangle) geometricFigure).definitionRectangleType();
-            }
-
-            if (geometricFigure instanceof Parallelogram) {
-                if (((Parallelogram) geometricFigure).isRealParallelogram())
-                    ((Parallelogram) geometricFigure).printVolumeFigure();
-            }
+        if (geometricFigure instanceof Parallelogram || geometricFigure instanceof TriangularPrism) {
+            //выводим обьем
+            ((VolumeFigure) geometricFigure).printVolumeFigure();
         }
         System.out.println();
     }

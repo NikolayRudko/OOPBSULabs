@@ -1,7 +1,12 @@
 package OOP;
 
-public class TriangularPrism extends Triangle {
+public class TriangularPrism extends Triangle implements VolumeFigure {
     private int d;
+
+    public TriangularPrism(Color color, int a, int b, int c, int d) {
+        super(color, a, b, c);
+        this.d = d;
+    }
 
     public TriangularPrism(int a, int b, int c, int d) {
         super(a, b, c);
@@ -31,12 +36,13 @@ public class TriangularPrism extends Triangle {
         return d;
     }
 
-    public boolean isRealTriangularPrism() {
-        return getD() > 0 && isRealTriangle();
+    @Override
+    public boolean isRealFigure() {
+        return getD() > 0 && super.isRealFigure();
     }
 
     public void printExistTriangularPrism() {
-        if (isRealTriangle())
+        if (isRealFigure())
             System.out.println("Triangular prism is exist");
         else
             System.out.println("Triangular prism is not exist");
@@ -49,7 +55,7 @@ public class TriangularPrism extends Triangle {
 
     @Override
     public void printPerimeterFigure() {
-        if (isRealTriangularPrism())
+        if (isRealFigure())
             System.out.printf("Perimeter: %d%n", perimeterTriangularPrism());
         else
             System.out.println("The triangular prism has no perimeter");
@@ -64,7 +70,7 @@ public class TriangularPrism extends Triangle {
 
     @Override
     public void printAreaFigure() {
-        if (isRealTriangularPrism())
+        if (isRealFigure())
             System.out.printf("Area: %f%n", ariaTriangularPrism());
         else
             System.out.println("The triangular prism has no area");
@@ -74,8 +80,9 @@ public class TriangularPrism extends Triangle {
         return areaTriangle() * getD();
     }
 
+    @Override
     public void printVolumeFigure() {
-        if (isRealTriangularPrism())
+        if (isRealFigure())
             System.out.printf("Volume: %f%n", volumeTriangularPrism());
         else
             System.out.println("The triangular prism has no volume");
@@ -88,7 +95,7 @@ public class TriangularPrism extends Triangle {
 
     @Override
     public String toString() {
-        if (isRealTriangularPrism())
+        if (isRealFigure())
             return "Triangular prism{" +
                     "\ncolor: " + getColor().printColor() +
                     "\nside a=" + getA() +

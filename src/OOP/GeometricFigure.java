@@ -24,4 +24,8 @@ public abstract class GeometricFigure {
     public abstract void printPerimeterFigure();
 
     public abstract void printFigure();
+
+    public abstract boolean isRealFigure();
+
+    public abstract void definitionFigureType();
 }

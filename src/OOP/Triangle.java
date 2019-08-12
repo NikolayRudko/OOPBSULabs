@@ -6,6 +6,15 @@ public class Triangle extends GeometricFigure {
     private int c;
 
     //Creating an instance of a class
+
+
+    public Triangle(Color color, int a, int b, int c) {
+        super(color);
+        this.a = a;
+        this.b = b;
+        this.c = c;
+    }
+
     public Triangle(int a, int b, int c) {
         this.a = a;
         this.b = b;
@@ -60,14 +69,15 @@ public class Triangle extends GeometricFigure {
 
     //determining the existence of a triangle
     public void printExistTriangle() {
-        if (isRealTriangle())
+        if (isRealFigure())
             System.out.println("Triangle is exist");
         else
             System.out.println("Triangle is not exist");
     }
 
-    public void definitionTriangleType() {
-        if (!isRealTriangle())
+    @Override
+    public void definitionFigureType() {
+        if (!isRealFigure())
             System.out.println("This triangle does not exist!!!");
         else {
             if (getA() == getB() && getA() == getC())
@@ -85,7 +95,7 @@ public class Triangle extends GeometricFigure {
 
     @Override
     public void printPerimeterFigure() {
-        if (isRealTriangle())
+        if (isRealFigure())
             System.out.printf("Perimeter: %d%n", perimeterTriangle());
         else
             System.out.println("The triangle has no perimeter");
@@ -98,13 +108,14 @@ public class Triangle extends GeometricFigure {
 
     @Override
     public void printAreaFigure() {
-        if (isRealTriangle())
+        if (isRealFigure())
             System.out.printf("Area: %f%n", areaTriangle());
         else
             System.out.println("The triangle has no area");
     }
 
-    public boolean isRealTriangle() {
+    @Override
+    public boolean isRealFigure() {
         return a + b > c && a + c > b && b + c > a && a > 0 && b > 0 && c > 0;
     }
 
@@ -115,7 +126,7 @@ public class Triangle extends GeometricFigure {
 
     @Override
     public String toString() {
-        if (isRealTriangle())
+        if (isRealFigure())
             return "Triangle{" +
                     "\ncolor: " + getColor().printColor() +
                     "\nside a=" + getA() +
