@@ -58,7 +58,7 @@ public class Rectangle extends GeometricFigure {
     }
 
     /**
-     * This method determines whether a figure exists.
+     * This method determines whether a rectangle exists.
      *
      * @return <b>true</b> if the rectangle is real else return <b>false</b>.
      * @see GeometricFigure

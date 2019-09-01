@@ -39,11 +39,35 @@ public class TriangularPrism extends Triangle implements VolumePrintable {
         return d;
     }
 
+    /**
+     * This method outputs <i>It is triangular prism</i> to the console.
+     *
+     * @see Triangle
+     * @see GeometricFigure
+     */
+    @Override
+    public void printFigure() {
+        System.out.println("It is triangular prism");
+    }
+
+    /**
+     * This method determines whether a triangular prism exists.
+     *
+     * @return <b>true</b> if the triangle prism is real else return <b>false</b>.
+     * @see Triangle
+     * @see GeometricFigure
+     */
     @Override
     public boolean isRealFigure() {
         return getD() > 0 && super.isRealFigure();
     }
 
+    /**
+     * This method outputs to the console whether this triangle prism exists or not.
+     *
+     * @see Triangle
+     * @see GeometricFigure
+     */
     @Override
     public void printExistFigure() {
         if (!isRealFigure()) {
@@ -53,13 +77,27 @@ public class TriangularPrism extends Triangle implements VolumePrintable {
         }
     }
 
-
+    /**
+     * This method determines the type of triangle prism and prints the result to the console.
+     *
+     * @see Triangle
+     * @see GeometricFigure
+     */
     @Override
     public void definitionFigureType() {
-        //empty method
+        if (getA() == getB() && getA() == getC())
+            System.out.println("This triangular prism is regular.");
+        else
+            System.out.println("This triangular prism is simple.");
     }
 
-    //calculates the perimeter of a Triangular prism
+    /**
+     * This method calculates the perimeter of the triangle prism.
+     *
+     * @return -1 if triangle prism is not real.<br>In all other cases, it returns the perimeter.
+     * @see Triangle
+     * @see GeometricFigure
+     */
     @Override
     int perimeterFigure() {
         if (!isRealFigure()) {
@@ -69,6 +107,12 @@ public class TriangularPrism extends Triangle implements VolumePrintable {
         return 2 * super.perimeterFigure() + 3 * getD();
     }
 
+    /**
+     * This method outputs the perimeter of the triangle prism to the console.
+     *
+     * @see Triangle
+     * @see GeometricFigure
+     */
     @Override
     public void printPerimeterFigure() {
         if (!isRealFigure()) {
@@ -78,6 +122,13 @@ public class TriangularPrism extends Triangle implements VolumePrintable {
         }
     }
 
+    /**
+     * This method calculates the area of the triangle prism.
+     *
+     * @return -1 if triangle prism is not real.<br>In all other cases, it returns the area.
+     * @see Triangle
+     * @see GeometricFigure
+     */
     @Override
     double areaFigure() {
         if (!isRealFigure()) {
@@ -88,8 +139,12 @@ public class TriangularPrism extends Triangle implements VolumePrintable {
         return faceArea + 2 * super.areaFigure();
     }
 
-    //calculates the area of a Triangular prism
-
+    /**
+     * This method outputs the area of the triangle prism to the console.
+     *
+     * @see Triangle
+     * @see GeometricFigure
+     */
     @Override
     public void printAreaFigure() {
         if (!isRealFigure()) {
@@ -99,6 +154,11 @@ public class TriangularPrism extends Triangle implements VolumePrintable {
         }
     }
 
+    /**
+     * This method calculates the volume of the triangle prism.
+     *
+     * @return -1 if triangle prism is not real.<br>In all other cases, it returns the volume.</br>
+     */
     private double volumeTriangularPrism() {
         if (!isRealFigure()) {
             return -1;
@@ -107,6 +167,9 @@ public class TriangularPrism extends Triangle implements VolumePrintable {
         return areaFigure() * getD();
     }
 
+    /**
+     * This method outputs the volume of the triangle prism to the console.
+     */
     @Override
     public void printVolumeFigure() {
         if (!isRealFigure()) {
@@ -114,11 +177,6 @@ public class TriangularPrism extends Triangle implements VolumePrintable {
         } else {
             System.out.printf("Volume: %f%n", volumeTriangularPrism());
         }
-    }
-
-    @Override
-    public void printFigure() {
-        System.out.println("It is triangular prism");
     }
 
     @Override

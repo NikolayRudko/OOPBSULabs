@@ -73,7 +73,7 @@ public class Triangle extends GeometricFigure {
     }
 
     /**
-     * This method determines whether a figure exists.
+     * This method determines whether a triangle exists.
      *
      * @return <b>true</b> if the triangle is real else return <b>false</b>.
      * @see GeometricFigure
@@ -97,8 +97,11 @@ public class Triangle extends GeometricFigure {
         }
     }
 
-    //Multiplies the sides of a triangle by a given number
-
+    /**
+     * This method multiplies all sides of the triangle by the transmitted value.
+     *
+     * @param scale the coefficient of how much the sides of the triangle will increase.
+     */
     public void toScale(int scale) {
         if (!isRealFigure()) {
             System.out.println("The operation cannot be performed, the triangle does not exist.");

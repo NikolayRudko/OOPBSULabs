@@ -42,16 +42,35 @@ public class Parallelogram extends Rectangle implements VolumePrintable {
         this.c = c;
     }
 
+    /**
+     * This method outputs <i>It is parallelogram</i> to the console.
+     *
+     * @see Rectangle
+     * @see GeometricFigure
+     */
     @Override
     public void printFigure() {
         System.out.println("It is parallelogram");
     }
 
+    /**
+     * This method determines whether a parallelogram exists.
+     *
+     * @return <b>true</b> if the rectangle is real else return <b>false</b>.
+     * @see Rectangle
+     * @see GeometricFigure
+     */
     @Override
     public boolean isRealFigure() {
         return getC() > 0 && super.isRealFigure();
     }
 
+    /**
+     * This method outputs to the console whether this parallelogram exists or not.
+     *
+     * @see Rectangle
+     * @see GeometricFigure
+     */
     @Override
     public void printExistFigure() {
         if (!isRealFigure()) {
@@ -61,12 +80,27 @@ public class Parallelogram extends Rectangle implements VolumePrintable {
         }
     }
 
+    /**
+     * This method determines the type of parallelogram and prints the result to the console.
+     *
+     * @see Rectangle
+     * @see GeometricFigure
+     */
     @Override
     public void definitionFigureType() {
-        //empty method
+        if (getA() == getB() && getA() == getC())
+            System.out.println("This parallelogram is a cube");
+        else
+            System.out.println("This is a simple parallelogram.");
     }
-    //calculates the perimeter of a parallelogram
 
+    /**
+     * This method calculates the perimeter of the parallelogram.
+     *
+     * @return -1 if parallelogram is not real.<br>In all other cases, it returns the perimeter.</br>
+     * @see Rectangle
+     * @see GeometricFigure
+     */
     @Override
     protected int perimeterFigure() {
         if (!isRealFigure()) {
@@ -76,6 +110,12 @@ public class Parallelogram extends Rectangle implements VolumePrintable {
         return 2 * super.perimeterFigure() + 4 * getC();
     }
 
+    /**
+     * This method outputs the perimeter of the parallelogram to the console.
+     *
+     * @see Rectangle
+     * @see GeometricFigure
+     */
     @Override
     public void printPerimeterFigure() {
         if (!isRealFigure()) {
@@ -84,8 +124,14 @@ public class Parallelogram extends Rectangle implements VolumePrintable {
             System.out.printf("Perimeter: %d%n", perimeterFigure());
         }
     }
-    //calculates the area of a Parallelogram
 
+    /**
+     * This method calculates the area of the parallelogram.
+     *
+     * @return -1 if parallelogram is not real.<br>In all other cases, it returns the area.</br>
+     * @see Rectangle
+     * @see GeometricFigure
+     */
     @Override
     double areaFigure() {
         if (!isRealFigure()) {
@@ -96,6 +142,12 @@ public class Parallelogram extends Rectangle implements VolumePrintable {
         return faceArea + 2 * super.areaFigure();
     }
 
+    /**
+     * This method outputs the area of the parallelogram to the console.
+     *
+     * @see Rectangle
+     * @see GeometricFigure
+     */
     @Override
     public void printAreaFigure() {
         if (!isRealFigure()) {
@@ -105,7 +157,12 @@ public class Parallelogram extends Rectangle implements VolumePrintable {
         }
     }
 
-    public double volumeParallelogram() {
+    /**
+     * This method calculates the volume of the parallelogram.
+     *
+     * @return -1 if parallelogram is not real.<br>In all other cases, it returns the volume.</br>
+     */
+    private double volumeParallelogram() {
         if (!isRealFigure()) {
             return -1;
         }
@@ -113,6 +170,9 @@ public class Parallelogram extends Rectangle implements VolumePrintable {
         return areaFigure() * getC();
     }
 
+    /**
+     * This method outputs the volume of the parallelogram to the console.
+     */
     @Override
     public void printVolumeFigure() {
         if (!isRealFigure()) {
