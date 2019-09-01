@@ -2,6 +2,8 @@ import OOP.*;
 
 public class Main {
     public static void main(String[] args) {
+
+
         //Triangle
         {
             Triangle triangle = new Triangle();
@@ -15,10 +17,10 @@ public class Main {
             triangle1.setC(10);
             //isRealFigure
             System.out.println("Triangle is real " + triangle1.isRealFigure());
-            triangle1.printExistTriangle();
+            triangle1.printExistFigure();
             triangle1 = triangle;
             System.out.println("Triangle is real " + triangle1.isRealFigure());
-            triangle1.printExistTriangle();
+            triangle1.printExistFigure();
             useFigure(triangle1);
             //use scale
             triangle1.toScale(2);
@@ -37,7 +39,6 @@ public class Main {
                 System.out.println();
             }
         }
-
         //TriangularPrism
         {
             TriangularPrism[] triangularPrisms = new TriangularPrism[4];
@@ -47,9 +48,11 @@ public class Main {
             triangularPrisms[2] = new TriangularPrism(Color.YELLOW, 12, 16, 10, 15);
             triangularPrisms[3] = new TriangularPrism(12, 61, 15, 0);
 
-            for (TriangularPrism item : triangularPrisms) {
+            for (Triangle item : triangularPrisms) {
                 useFigure(item);
             }
+
+
         }
 
         //Rectangle
@@ -64,6 +67,7 @@ public class Main {
                 useFigure(item);
             }
         }
+
         //Parallelogram
         {
 
@@ -83,7 +87,9 @@ public class Main {
         }
     }
 
+    //test method
     private static void useFigure(GeometricFigure geometricFigure) {
+        geometricFigure.printFigure();
         System.out.println(geometricFigure);
         geometricFigure.printPerimeterFigure();
         geometricFigure.printAreaFigure();
@@ -94,7 +100,7 @@ public class Main {
 
         if (geometricFigure instanceof Parallelogram || geometricFigure instanceof TriangularPrism) {
             //выводим обьем
-            ((VolumeFigure) geometricFigure).printVolumeFigure();
+            ((VolumePrintable) geometricFigure).printVolumeFigure();
         }
         System.out.println();
     }

@@ -1,6 +1,8 @@
 package OOP;
 
-public class Parallelogram extends Rectangle implements VolumeFigure {
+import java.util.Objects;
+
+public class Parallelogram extends Rectangle implements VolumePrintable {
     private int c;
 
     public Parallelogram() {
@@ -41,71 +43,111 @@ public class Parallelogram extends Rectangle implements VolumeFigure {
     }
 
     @Override
-    public boolean isRealFigure() {
-        return getC() > 0 && super.isRealFigure();
-    }
-
-    public void printExistTriangularPrism() {
-        if (isRealFigure())
-            System.out.println("Parallelogram prism is exist");
-        else
-            System.out.println("Parallelogram prism is not exist");
-    }
-
-    //calculates the perimeter of a parallelogram
-    int perimeterParallelogram() {
-        return 2 * perimeterRectangle() + 4 * getC();
-    }
-
-    @Override
-    public void printPerimeterFigure() {
-        if (isRealFigure())
-            System.out.printf("Perimeter: %d%n", perimeterParallelogram());
-        else
-            System.out.println("The parallelogram has no perimeter");
-    }
-
-    //calculates the area of a Parallelogram
-    double ariaParallelogram() {
-        double faceArea = (getA() + getB()) * getC();
-        return faceArea + 2 * areaRectangle();
-    }
-
-    @Override
-    public void printAreaFigure() {
-        if (isRealFigure())
-            System.out.printf("Area: %f%n", ariaParallelogram());
-        else
-            System.out.println("The parallelogram has no area");
-    }
-
-    private double volumeParallelogram() {
-        return areaRectangle() * getC();
-    }
-
-    @Override
-    public void printVolumeFigure() {
-        if (isRealFigure())
-            System.out.printf("Volume: %f%n", volumeParallelogram());
-        else
-            System.out.println("The parallelogram has no volume");
-    }
-
-
-    @Override
     public void printFigure() {
         System.out.println("It is parallelogram");
     }
 
     @Override
+    public boolean isRealFigure() {
+        return getC() > 0 && super.isRealFigure();
+    }
+
+    @Override
+    public void printExistFigure() {
+        if (!isRealFigure()) {
+            System.out.println("This parallelogram doesn't exist.");
+        } else {
+            System.out.println("This parallelogram exists.");
+        }
+    }
+
+    @Override
+    public void definitionFigureType() {
+        //empty method
+    }
+    //calculates the perimeter of a parallelogram
+
+    @Override
+    protected int perimeterFigure() {
+        if (!isRealFigure()) {
+            return -1;
+        }
+        //When the parallelogram is real
+        return 2 * super.perimeterFigure() + 4 * getC();
+    }
+
+    @Override
+    public void printPerimeterFigure() {
+        if (!isRealFigure()) {
+            System.out.println("The parallelogram has no perimeter");
+        } else {
+            System.out.printf("Perimeter: %d%n", perimeterFigure());
+        }
+    }
+    //calculates the area of a Parallelogram
+
+    @Override
+    double areaFigure() {
+        if (!isRealFigure()) {
+            return -1;
+        }
+        //When the parallelogram is real
+        double faceArea = (getA() + getB()) * getC();
+        return faceArea + 2 * super.areaFigure();
+    }
+
+    @Override
+    public void printAreaFigure() {
+        if (!isRealFigure()) {
+            System.out.println("The parallelogram has no area");
+        } else {
+            System.out.printf("Area: %f%n", areaFigure());
+        }
+    }
+
+    public double volumeParallelogram() {
+        if (!isRealFigure()) {
+            return -1;
+        }
+        //When the parallelogram is real
+        return areaFigure() * getC();
+    }
+
+    @Override
+    public void printVolumeFigure() {
+        if (!isRealFigure()) {
+            System.out.println("The parallelogram has no volume");
+        } else {
+            System.out.printf("Volume: %f%n", volumeParallelogram());
+        }
+    }
+
+
+    @Override
     public String toString() {
-        if (isRealFigure())
-            return "Parallelogram{" +
-                    "\ncolor: " + getColor().printColor() +
-                    "\nside a=" + getA() +
-                    ",\nside b=" + getB() +
-                    ",\nheight c=" + getC() +
-                    "}";
-        return "Parallelogram prism does not exist";
+        if (!isRealFigure()) {
+            return "This parallelogram doesn't exist. ";
+        }
+        //When the parallelogram is real
+        return "{" + getClass().getName() +
+                "\tColor:" + getColor().printColor() +
+                "\tside a=" + getA() +
+                "\tside b=" + getB() +
+                "\theight c=" + getC() +
+                "}";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Parallelogram that = (Parallelogram) o;
+        return c == that.c;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), c);
     }
 }

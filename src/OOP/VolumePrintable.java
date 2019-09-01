@@ -1,6 +1,6 @@
 package OOP;
 
-public interface VolumeFigure {
+public interface VolumePrintable {
 
     void printVolumeFigure();
 }

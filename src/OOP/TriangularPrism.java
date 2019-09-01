@@ -1,6 +1,9 @@
 package OOP;
 
-public class TriangularPrism extends Triangle implements VolumeFigure {
+
+import java.util.Objects;
+
+public class TriangularPrism extends Triangle implements VolumePrintable {
     private int d;
 
     public TriangularPrism(Color color, int a, int b, int c, int d) {
@@ -41,51 +44,76 @@ public class TriangularPrism extends Triangle implements VolumeFigure {
         return getD() > 0 && super.isRealFigure();
     }
 
-    public void printExistTriangularPrism() {
-        if (isRealFigure())
-            System.out.println("Triangular prism is exist");
-        else
+    @Override
+    public void printExistFigure() {
+        if (!isRealFigure()) {
             System.out.println("Triangular prism is not exist");
+        } else {
+            System.out.println("Triangular prism is exist");
+        }
+    }
+
+
+    @Override
+    public void definitionFigureType() {
+        //empty method
     }
 
     //calculates the perimeter of a Triangular prism
-    int perimeterTriangularPrism() {
-        return 2 * perimeterTriangle() + 3 * getD();
+    @Override
+    int perimeterFigure() {
+        if (!isRealFigure()) {
+            return -1;
+        }
+        //When the triangular prism is real
+        return 2 * super.perimeterFigure() + 3 * getD();
     }
 
     @Override
     public void printPerimeterFigure() {
-        if (isRealFigure())
-            System.out.printf("Perimeter: %d%n", perimeterTriangularPrism());
-        else
+        if (!isRealFigure()) {
             System.out.println("The triangular prism has no perimeter");
+        } else {
+            System.out.printf("Perimeter: %d%n", perimeterFigure());
+        }
     }
 
-    double ariaTriangularPrism() {
+    @Override
+    double areaFigure() {
+        if (!isRealFigure()) {
+            return -1;
+        }
+        //When the triangular prism is real
         double faceArea = (getA() + getB() + getC()) * getD();
-        return faceArea + 2 * areaTriangle();
+        return faceArea + 2 * super.areaFigure();
     }
 
     //calculates the area of a Triangular prism
 
     @Override
     public void printAreaFigure() {
-        if (isRealFigure())
-            System.out.printf("Area: %f%n", ariaTriangularPrism());
-        else
+        if (!isRealFigure()) {
             System.out.println("The triangular prism has no area");
+        } else {
+            System.out.printf("Area: %f%n", areaFigure());
+        }
     }
 
     private double volumeTriangularPrism() {
-        return areaTriangle() * getD();
+        if (!isRealFigure()) {
+            return -1;
+        }
+        //When the triangular prism is real
+        return areaFigure() * getD();
     }
 
     @Override
     public void printVolumeFigure() {
-        if (isRealFigure())
-            System.out.printf("Volume: %f%n", volumeTriangularPrism());
-        else
+        if (!isRealFigure()) {
             System.out.println("The triangular prism has no volume");
+        } else {
+            System.out.printf("Volume: %f%n", volumeTriangularPrism());
+        }
     }
 
     @Override
@@ -95,15 +123,31 @@ public class TriangularPrism extends Triangle implements VolumeFigure {
 
     @Override
     public String toString() {
-        if (isRealFigure())
-            return "Triangular prism{" +
-                    "\ncolor: " + getColor().printColor() +
-                    "\nside a=" + getA() +
-                    ",\nside b=" + getB() +
-                    ",\nside c=" + getC() +
-                    ",\nheight d=" + getD() +
-                    "}";
-        return "Triangular prism does not exist";
+        if (!isRealFigure()) {
+            return "This triangular prism doesn't exist. ";
+        }
+        //When the triangular prism is real
+        return "{" + getClass().getName() +
+                "\tColor : " + getColor().printColor() +
+                "\tside a=" + getA() +
+                "\tside b=" + getB() +
+                "\tside c=" + getC() +
+                "\theight d=" + getD() +
+                "}";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        TriangularPrism that = (TriangularPrism) o;
+        return d == that.d;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), d);
     }
 }
 
